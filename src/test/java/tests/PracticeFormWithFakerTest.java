@@ -1,16 +1,9 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import com.github.javafaker.Faker;
+
 import data.DataFaker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import utils.RandomUtils;
-
-import java.util.Locale;
-
-import static com.codeborne.selenide.Condition.image;
-import static utils.RandomUtils.getRandomString;
 
 public class PracticeFormWithFakerTest extends TestBase {
 
@@ -19,8 +12,6 @@ public class PracticeFormWithFakerTest extends TestBase {
 
     @Test
     void fillFormTestFaker() {
-
-
 
         registrationPage.openPage()
                 .setFirstName(data.firstName)
@@ -45,40 +36,40 @@ public class PracticeFormWithFakerTest extends TestBase {
                 .checkResult("Mobile", data.phoneNumber)
                 .checkResult("Date of Birth",
                         data.dayOfBirth + "\n" +
-                        data.monthOfbirth + "," +
-                        data.yearOfbirth)
+                                data.monthOfbirth + "," +
+                                data.yearOfbirth)
                 .checkResult("Subjects", data.subjects)
                 .checkResult("Hobbies", data.hobbies)
                 .checkResult("Picture", "1.png")
                 .checkResult("Address", data.streetAddress)
                 .checkResult("State and City", data.state + "\n" + data.city);
     }
+
     @Test
-    void minimumfillFomTest () {
+    void minimumfillFomTest() {
 
-            registrationPage.openPage()
-                    .setFirstName(data.firstName)
-                    .setLastName(data.lastName)
-                    .setGender(data.gender)
-                    .setuserNumber(data.phoneNumber)
-                    .setDateOfBirth(data.dayOfBirth, data.monthOfbirth, data.yearOfbirth)
-                    .submitForm();
-   ;
+        registrationPage.openPage()
+                .setFirstName(data.firstName)
+                .setLastName(data.lastName)
+                .setGender(data.gender)
+                .setuserNumber(data.phoneNumber)
+                .setDateOfBirth(data.dayOfBirth, data.monthOfbirth, data.yearOfbirth)
+                .submitForm();
+        ;
 
-            registrationPage.checkAppearedTable()
-                    .checkHeaderTextOfTable(data.titleModal)
-                    .checkResult("Student Name", data.firstName + "\n" + data.lastName)
-                    .checkResult("Gender", data.gender)
-                    .checkResult("Mobile", data.phoneNumber)
-                    .checkResult("Date of Birth",
-                            data.dayOfBirth + "\n" +
-                                    data.monthOfbirth + "," +
-                                    data.yearOfbirth);
-        }
-//
+        registrationPage.checkAppearedTable()
+                .checkHeaderTextOfTable(data.titleModal)
+                .checkResult("Student Name", data.firstName + "\n" + data.lastName)
+                .checkResult("Gender", data.gender)
+                .checkResult("Mobile", data.phoneNumber)
+                .checkResult("Date of Birth",
+                        data.dayOfBirth + "\n" +
+                                data.monthOfbirth + "," +
+                                data.yearOfbirth);
+    }
+
     @Test
     void emptyFormNegativeTest() {
-
 
         registrationPage
                 .openPage()
